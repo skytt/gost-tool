@@ -1,0 +1,16 @@
+# /usr/lib/systemd/system/gost@.service
+
+[Unit]
+Description=GO Simple Tunnel
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/bin/nohup /usr/bin/gost -C /etc/gost/gost.json m>> /etc/gost/gost.log 2>&1 &
+Restart=always
+LimitNOFILE=512000
+
+[Install]
+WantedBy=multi-user.target
